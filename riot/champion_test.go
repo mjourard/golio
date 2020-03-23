@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/KnutZuidema/golio/api"
-	"github.com/KnutZuidema/golio/internal"
-	"github.com/KnutZuidema/golio/internal/mock"
+	"github.com/mjourard/golio/api"
+	"github.com/mjourard/golio/internal"
+	"github.com/mjourard/golio/internal/mock"
 )
 
 func TestChampionClient_GetFreeRotation(t *testing.T) {

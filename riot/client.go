@@ -13,8 +13,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/KnutZuidema/golio/api"
-	"github.com/KnutZuidema/golio/internal"
+	"github.com/mjourard/golio/api"
+	"github.com/mjourard/golio/internal"
 )
 
 // Client provides access to all Riot API endpoints

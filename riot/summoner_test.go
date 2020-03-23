@@ -7,9 +7,9 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/KnutZuidema/golio/api"
-	"github.com/KnutZuidema/golio/internal"
-	"github.com/KnutZuidema/golio/internal/mock"
+	"github.com/mjourard/golio/api"
+	"github.com/mjourard/golio/internal"
+	"github.com/mjourard/golio/internal/mock"
 )
 
 func TestSummonerClient_GetByName(t *testing.T) {
