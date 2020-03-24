@@ -67,9 +67,9 @@ func (m *ChampionMastery) GetChampion(client *datadragon.Client) (datadragon.Cha
 // LeagueList represents a league containing all player entries in it
 type LeagueList struct {
 	LeagueID      string        `json:"leagueId"`
-	Tier          string        `json:"Tier"`
+	Tier          string        `json:"tier"`
 	Entries       []*LeagueItem `json:"entries"`
-	Queue         string        `json:"Queue"`
+	Queue         string        `json:"queue"`
 	Name          string        `json:"name"`
 	sortedEntries []*LeagueItem
 }
@@ -95,6 +95,7 @@ type LeagueItem struct {
 	Wins         int         `json:"wins"`
 	Veteran      bool        `json:"veteran"`
 	Losses       int         `json:"losses"`
+	Tier         string      `json:"tier"`
 	FreshBlood   bool        `json:"freshBlood"`
 	Inactive     bool        `json:"inactive"`
 	Rank         string      `json:"rank"`
@@ -502,7 +503,7 @@ type MatchReference struct {
 	Champion   int    `json:"champion"`
 	PlatformID string `json:"platformId"`
 	Season     int    `json:"season"`
-	Queue      int    `json:"Queue"`
+	Queue      int    `json:"queue"`
 	Role       string `json:"role"`
 	Timestamp  int    `json:"timestamp"`
 }
