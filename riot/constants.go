@@ -47,7 +47,7 @@ const (
 	endpointGetThirdPartyCode            = endpointPlatformBase + "/third-party-code/by-summoner/%s"
 )
 
-// Different parameters of summoner identification
+// Identification is the different parameters of summoner identification
 type Identification string
 
 const (
@@ -57,7 +57,7 @@ const (
 	identificationSummonerID                = "summonerID"
 )
 
-// The type of ranked queue that a summoner can join for matches
+// Queue is the type of ranked queue that a summoner can join for matches
 type Queue string
 
 // All possible queues
@@ -67,7 +67,7 @@ const (
 	QueueRankedTwistedTreeline       = "RANKED_FLEX_TT"
 )
 
-// The tier that the player is ranked as (Iron, Bronze, Silver, Gold, etc.)
+// Tier is the tier that the player is ranked as (Iron, Bronze, Silver, Gold, etc.)
 type Tier string
 
 // All possible Tiers
@@ -80,7 +80,7 @@ const (
 	TierDiamond       = "DIAMOND"
 )
 
-// The sub division that a summoner is in within their tier (1,2,3 or 4)
+// Division is the sub division that a summoner is in within their tier (1,2,3 or 4)
 type Division string
 
 // All possible divisions
