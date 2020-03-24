@@ -67,9 +67,9 @@ func (m *ChampionMastery) GetChampion(client *datadragon.Client) (datadragon.Cha
 // LeagueList represents a league containing all player entries in it
 type LeagueList struct {
 	LeagueID      string        `json:"leagueId"`
-	Tier          string        `json:"tier"`
+	Tier          string        `json:"Tier"`
 	Entries       []*LeagueItem `json:"entries"`
-	Queue         string        `json:"queue"`
+	Queue         string        `json:"Queue"`
 	Name          string        `json:"name"`
 	sortedEntries []*LeagueItem
 }
@@ -107,7 +107,7 @@ func (i *LeagueItem) GetSummoner(client *Client) (*Summoner, error) {
 	return client.Summoner.GetByID(i.SummonerID)
 }
 
-// MiniSeries represents a mini series when playing to ascend to the next ranked tier
+// MiniSeries represents a mini series when playing to ascend to the next ranked Tier
 type MiniSeries struct {
 	Progress string `json:"progress"`
 	Losses   int    `json:"losses"`
@@ -150,7 +150,7 @@ func (m *Match) GetSeason(client *static.Client) (static.Season, error) {
 	return client.GetSeason(m.SeasonID)
 }
 
-// GetQueue returns the queue this match was played in
+// GetQueue returns the Queue this match was played in
 func (m *Match) GetQueue(client *static.Client) (static.Queue, error) {
 	return client.GetQueue(m.QueueID)
 }
@@ -268,7 +268,7 @@ type Participant struct {
 	Spell2ID int `json:"spell2Id"`
 	// List of legacy Mastery information. Not included for matches played with Runes Reforged.
 	Masteries []*LegacyMastery `json:"masteries"`
-	// Highest ranked tier achieved for the previous season in a specific subset of queueIds, if any, otherwise null.
+	// Highest ranked Tier achieved for the previous season in a specific subset of queueIds, if any, otherwise null.
 	// Used to display border in game loading screen. Please refer to the Ranked Info documentation.
 	// (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
 	HighestAchievedSeasonTier string `json:"highestAchievedSeasonTier"`
@@ -502,7 +502,7 @@ type MatchReference struct {
 	Champion   int    `json:"champion"`
 	PlatformID string `json:"platformId"`
 	Season     int    `json:"season"`
-	Queue      int    `json:"queue"`
+	Queue      int    `json:"Queue"`
 	Role       string `json:"role"`
 	Timestamp  int    `json:"timestamp"`
 }
@@ -517,7 +517,7 @@ func (r *MatchReference) GetSeason(client *static.Client) (static.Season, error)
 	return client.GetSeason(r.Season)
 }
 
-// GetQueue returns the queue this match was played in
+// GetQueue returns the Queue this match was played in
 func (r *MatchReference) GetQueue(client *static.Client) (static.Queue, error) {
 	return client.GetQueue(r.Queue)
 }

@@ -12,9 +12,9 @@ const (
 	endpointPlatformBase                 = "/lol/platform/v3"
 	endpointGetFreeChampionRotation      = endpointPlatformBase + "/champion-rotations"
 	endpointLeagueBase                   = "/lol/league/v4"
-	endpointGetChallengerLeague          = endpointLeagueBase + "/challengerleagues/by-queue/%s"
-	endpointGetGrandmasterLeague         = endpointLeagueBase + "/grandmasterleagues/by-queue/%s"
-	endpointGetMasterLeague              = endpointLeagueBase + "/masterleagues/by-queue/%s"
+	endpointGetChallengerLeague          = endpointLeagueBase + "/challengerleagues/by-Queue/%s"
+	endpointGetGrandmasterLeague         = endpointLeagueBase + "/grandmasterleagues/by-Queue/%s"
+	endpointGetMasterLeague              = endpointLeagueBase + "/masterleagues/by-Queue/%s"
 	endpointGetLeaguesBySummoner         = endpointLeagueBase + "/entries/by-summoner/%s"
 	endpointGetLeagues                   = endpointLeagueBase + "/entries/%s/%s/%s"
 	endpointGetLeague                    = endpointLeagueBase + "/leagues/%s"
@@ -47,29 +47,29 @@ const (
 	endpointGetThirdPartyCode            = endpointPlatformBase + "/third-party-code/by-summoner/%s"
 )
 
-type identification string
+type Identification string
 
 const (
-	identificationName       identification = "name"
+	identificationName       Identification = "name"
 	identificationAccountID                 = "account"
 	identificationPUUID                     = "puuid"
 	identificationSummonerID                = "summonerID"
 )
 
-type queue string
+type Queue string
 
 // All possible queues
 const (
-	QueueRankedSolo            queue = "RANKED_SOLO_5x5"
+	QueueRankedSolo            Queue = "RANKED_SOLO_5x5"
 	QueueRankedFlex                  = "RANKED_FLEX_SR"
 	QueueRankedTwistedTreeline       = "RANKED_FLEX_TT"
 )
 
-type tier string
+type Tier string
 
 // All possible Tiers
 const (
-	TierIron     tier = "IRON"
+	TierIron     Tier = "IRON"
 	TierBronze        = "BRONZE"
 	TierSilver        = "SILVER"
 	TierGold          = "GOLD"
@@ -77,11 +77,11 @@ const (
 	TierDiamond       = "DIAMOND"
 )
 
-type division string
+type Division string
 
 // All possible divisions
 const (
-	DivisionOne   division = "I"
+	DivisionOne   Division = "I"
 	DivisionTwo            = "II"
 	DivisionThree          = "III"
 	DivisionFour           = "IV"
@@ -108,15 +108,15 @@ const (
 )
 
 var (
-	// Queues is a list of all available queue types
-	Queues = []queue{
+	// Queues is a list of all available Queue types
+	Queues = []Queue{
 		QueueRankedSolo,
 		QueueRankedFlex,
 		QueueRankedTwistedTreeline,
 	}
 
 	// Tiers is a list of all available tiers
-	Tiers = []tier{
+	Tiers = []Tier{
 		TierIron,
 		TierBronze,
 		TierSilver,
@@ -126,7 +126,7 @@ var (
 	}
 
 	// Divisions is a list of all available divisions
-	Divisions = []division{
+	Divisions = []Division{
 		DivisionOne,
 		DivisionTwo,
 		DivisionThree,

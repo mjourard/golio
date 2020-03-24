@@ -30,7 +30,7 @@ func (s *summonerClient) GetByID(summonerID string) (*Summoner, error) {
 	return s.getBy(identificationSummonerID, summonerID, s.logger().WithField("method", "GetByID"))
 }
 
-func (s *summonerClient) getBy(by identification, value string, logger log.FieldLogger) (*Summoner, error) {
+func (s *summonerClient) getBy(by Identification, value string, logger log.FieldLogger) (*Summoner, error) {
 	var endpoint string
 	switch by {
 	case identificationSummonerID:

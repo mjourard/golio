@@ -11,7 +11,7 @@ type leagueClient struct {
 }
 
 // GetChallenger returns the current Challenger league for the Region
-func (l *leagueClient) GetChallenger(queue queue) (*LeagueList, error) {
+func (l *leagueClient) GetChallenger(queue Queue) (*LeagueList, error) {
 	logger := l.logger().WithField("method", "GetChallenger")
 	var list *LeagueList
 	if err := l.c.getInto(fmt.Sprintf(endpointGetChallengerLeague, queue), &list); err != nil {
@@ -22,7 +22,7 @@ func (l *leagueClient) GetChallenger(queue queue) (*LeagueList, error) {
 }
 
 // GetGrandmaster returns the current Grandmaster league for the Region
-func (l *leagueClient) GetGrandmaster(queue queue) (*LeagueList, error) {
+func (l *leagueClient) GetGrandmaster(queue Queue) (*LeagueList, error) {
 	logger := l.logger().WithField("method", "GetGrandmaster")
 	var list *LeagueList
 	if err := l.c.getInto(fmt.Sprintf(endpointGetGrandmasterLeague, queue), &list); err != nil {
@@ -33,7 +33,7 @@ func (l *leagueClient) GetGrandmaster(queue queue) (*LeagueList, error) {
 }
 
 // GetMaster returns the current Master league for the Region
-func (l *leagueClient) GetMaster(queue queue) (*LeagueList, error) {
+func (l *leagueClient) GetMaster(queue Queue) (*LeagueList, error) {
 	logger := l.logger().WithField("method", "GetMaster")
 	var list *LeagueList
 	if err := l.c.getInto(fmt.Sprintf(endpointGetMasterLeague, queue), &list); err != nil {
@@ -54,8 +54,8 @@ func (l *leagueClient) ListBySummoner(summonerID string) ([]*LeagueItem, error) 
 	return leagues, nil
 }
 
-// ListPlayers returns all players with a league specified by its queue, tier and division
-func (l *leagueClient) ListPlayers(queue queue, tier tier, division division) ([]*LeagueItem, error) {
+// ListPlayers returns all players with a league specified by its Queue, Tier and Division
+func (l *leagueClient) ListPlayers(queue Queue, tier Tier, division Division) ([]*LeagueItem, error) {
 	logger := l.logger().WithField("method", "ListPlayers")
 	var leagues []*LeagueItem
 	if err := l.c.getInto(fmt.Sprintf(endpointGetLeagues, queue, tier, division), &leagues); err != nil {
