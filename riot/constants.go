@@ -16,7 +16,7 @@ const (
 	endpointGetGrandmasterLeague         = endpointLeagueBase + "/grandmasterleagues/by-queue/%s"
 	endpointGetMasterLeague              = endpointLeagueBase + "/masterleagues/by-queue/%s"
 	endpointGetLeaguesBySummoner         = endpointLeagueBase + "/entries/by-summoner/%s"
-	endpointGetLeagues                   = endpointLeagueBase + "/entries/%s/%s/%s"
+	endpointGetLeagues                   = endpointLeagueBase + "/entries/%s/%s/%s?page=%d"
 	endpointGetLeague                    = endpointLeagueBase + "/leagues/%s"
 	endpointStatusBase                   = "/lol/status/v3"
 	endpointGetStatus                    = endpointStatusBase + "/shard-data"

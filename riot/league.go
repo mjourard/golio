@@ -55,10 +55,11 @@ func (l *leagueClient) ListBySummoner(summonerID string) ([]*LeagueItem, error) 
 }
 
 // ListPlayers returns all players with a league specified by its Queue, Tier and Division
-func (l *leagueClient) ListPlayers(queue Queue, tier Tier, division Division) ([]*LeagueItem, error) {
+// Include the page number to work with RIOT's pagination
+func (l *leagueClient) ListPlayers(queue Queue, tier Tier, division Division, page int) ([]*LeagueItem, error) {
 	logger := l.logger().WithField("method", "ListPlayers")
 	var leagues []*LeagueItem
-	if err := l.c.getInto(fmt.Sprintf(endpointGetLeagues, queue, tier, division), &leagues); err != nil {
+	if err := l.c.getInto(fmt.Sprintf(endpointGetLeagues, queue, tier, division, page), &leagues); err != nil {
 		logger.Debug(err)
 		return nil, err
 	}

@@ -221,7 +221,7 @@ func TestLeagueClient_ListPlayers(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			client := NewClient(api.RegionEuropeWest, "API_KEY", tt.doer, logrus.StandardLogger())
-			got, err := client.League.ListPlayers(QueueRankedSolo, TierGold, DivisionOne)
+			got, err := client.League.ListPlayers(QueueRankedSolo, TierGold, DivisionOne, 1)
 			require.Equal(t, err, tt.wantErr, fmt.Sprintf("want err %v, got %v", tt.wantErr, err))
 			if tt.wantErr == nil {
 				assert.Equal(t, got, tt.want)
