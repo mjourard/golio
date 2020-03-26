@@ -183,11 +183,13 @@ func TestLeagueClient_ListPlayers(t *testing.T) {
 		want    []*LeagueItem
 		doer    internal.Doer
 		wantErr error
+		page    int
 	}{
 		{
 			name: "get response",
 			want: []*LeagueItem{},
 			doer: mock.NewJSONMockDoer([]*LeagueItem{}, 200),
+			page: 1,
 		},
 		{
 			name: "unknown error status",
@@ -196,26 +198,31 @@ func TestLeagueClient_ListPlayers(t *testing.T) {
 				StatusCode: 999,
 			},
 			doer: mock.NewStatusMockDoer(999),
+			page: 1,
 		},
 		{
 			name:    "not found",
 			wantErr: api.ErrNotFound,
 			doer:    mock.NewStatusMockDoer(http.StatusNotFound),
+			page:    1,
 		},
 		{
 			name: "rate limited",
 			want: []*LeagueItem{},
 			doer: rateLimitDoer([]*LeagueItem{}),
+			page: 1,
 		},
 		{
 			name: "unavailable once",
 			want: []*LeagueItem{},
 			doer: unavailableOnceDoer([]*LeagueItem{}),
+			page: 1,
 		},
 		{
 			name:    "unavailable twice",
 			wantErr: api.ErrServiceUnavailable,
 			doer:    mock.NewStatusMockDoer(http.StatusServiceUnavailable),
+			page:    1,
 		},
 	}
 	for _, tt := range tests {

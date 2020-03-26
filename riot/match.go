@@ -23,11 +23,15 @@ func (m *matchClient) Get(id int) (*Match, error) {
 }
 
 // List returns a specified range of matches played on the account
-func (m *matchClient) List(accountID string, beginIndex, endIndex int) (*Matchlist, error) {
+func (m *matchClient) List(accountID string, filter MatchFilter) (*Matchlist, error) {
 	logger := m.logger().WithField("method", "List")
 	var matches *Matchlist
+	queryParams := filter.GetQueryParams()
+	if queryParams != "" {
+		queryParams = "?" + queryParams
+	}
 	if err := m.c.getInto(
-		fmt.Sprintf(endpointGetMatchesByAccount, accountID, beginIndex, endIndex),
+		fmt.Sprintf(endpointGetMatchesByAccount, accountID, queryParams),
 		&matches,
 	); err != nil {
 		logger.Debug(err)
@@ -44,13 +48,16 @@ type MatchStreamValue struct {
 
 // ListStream returns all matches played on this account as a stream, requesting new until there are no
 // more new games
-func (m *matchClient) ListStream(accountID string) <-chan MatchStreamValue {
+func (m *matchClient) ListStream(accountID string, filter MatchFilter) <-chan MatchStreamValue {
 	logger := m.logger().WithField("method", "ListStream")
 	cMatches := make(chan MatchStreamValue, 100)
 	go func() {
 		start := 0
+		end := 100
+		filter.BeginIndex = &start
+		filter.EndIndex = &end
 		for {
-			matches, err := m.List(accountID, start, start+100)
+			matches, err := m.List(accountID, filter)
 			if err != nil {
 				logger.Debug(err)
 				cMatches <- MatchStreamValue{Error: err}
@@ -64,6 +71,7 @@ func (m *matchClient) ListStream(accountID string) <-chan MatchStreamValue {
 				return
 			}
 			start += 100
+			end += 100
 		}
 	}()
 	return cMatches

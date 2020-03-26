@@ -22,7 +22,7 @@ const (
 	endpointGetStatus                    = endpointStatusBase + "/shard-data"
 	endpointMatchBase                    = "/lol/match/v4"
 	endpointGetMatch                     = endpointMatchBase + "/matches/%d"
-	endpointGetMatchesByAccount          = endpointMatchBase + "/matchlists/by-account/%s?beginIndex=%d&endIndex=%d"
+	endpointGetMatchesByAccount          = endpointMatchBase + "/matchlists/by-account/%s%s"
 	endpointGetMatchTimeline             = endpointMatchBase + "/timelines/by-match/%d"
 	endpointGetMatchIDsByTournamentCode  = endpointMatchBase + "/matches/by-tournament-code/%s/ids"
 	endpointGetMatchForTournament        = endpointMatchBase + "/matches/%d/by-tournament-code/%s"

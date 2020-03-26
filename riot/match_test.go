@@ -57,10 +57,15 @@ func TestMatchClient_List(t *testing.T) {
 			doer:    mock.NewStatusMockDoer(http.StatusServiceUnavailable),
 		},
 	}
+	startIdx := 0
+	endIdx := 1
+	filter := NewMatchFilter()
+	filter.EndIndex = &endIdx
+	filter.BeginIndex = &startIdx
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			client := NewClient(api.RegionEuropeWest, "API_KEY", tt.doer, logrus.StandardLogger())
-			got, err := client.Match.List("id", 0, 1)
+			got, err := client.Match.List("id", filter)
 			require.Equal(t, err, tt.wantErr, fmt.Sprintf("want err %v, got %v", tt.wantErr, err))
 			if tt.wantErr == nil {
 				assert.Equal(t, got, tt.want)
@@ -118,10 +123,11 @@ func TestMatchClient_ListStream(t *testing.T) {
 			doer:    mock.NewStatusMockDoer(http.StatusServiceUnavailable),
 		},
 	}
+	filter := NewMatchFilter()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			client := NewClient(api.RegionEuropeWest, "API_KEY", tt.doer, logrus.StandardLogger())
-			got := client.Match.ListStream("id")
+			got := client.Match.ListStream("id", filter)
 			for res := range got {
 				if res.Error != nil && tt.wantErr != nil {
 					require.Equal(t, res.Error, tt.wantErr)

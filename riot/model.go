@@ -1,8 +1,11 @@
 package riot
 
 import (
+	"fmt"
 	"sort"
 	"strconv"
+	"strings"
+	"time"
 
 	"github.com/mjourard/golio/datadragon"
 	"github.com/mjourard/golio/static"
@@ -494,6 +497,58 @@ type Matchlist struct {
 	TotalGames int               `json:"totalGames"`
 	StartIndex int               `json:"startIndex"`
 	EndIndex   int               `json:"endIndex"`
+}
+
+// MatchFilter contains information for filtering on certain attributes when querying the matchList of an account
+type MatchFilter struct {
+	ChampionIds []int
+	QueueIds    []int
+	Seasons     []int
+	EndTime     *time.Time //The end time to use for filtering matchlist specified as epoch milliseconds
+	BeginTime   *time.Time //The begin time to use for filtering matchlist specified as epoch milliseconds
+	EndIndex    *int       //The end index to use for filtering the matchlist. Defaults to BeginIndex + 100. EndIndex - BeginIndex <= 100
+	BeginIndex  *int       //The begin index to use for filtering the matchlist. Defaults to 0. EndIndex - BeginIndex <= 100
+}
+
+// NewMatchFilter initializes a new MatchFilter value with initialized properties
+func NewMatchFilter() MatchFilter {
+	return MatchFilter{
+		ChampionIds: []int{},
+		QueueIds:    []int{},
+		Seasons:     []int{},
+		EndTime:     nil,
+		BeginTime:   nil,
+		EndIndex:    nil,
+		BeginIndex:  nil,
+	}
+}
+
+// GetQueryParams retrieves query parameters for the ListMatches endpoint
+func (m *MatchFilter) GetQueryParams() string {
+	var params []string
+	for _, id := range m.ChampionIds {
+		params = append(params, fmt.Sprintf("champion=%d", id))
+	}
+	for _, id := range m.QueueIds {
+		params = append(params, fmt.Sprintf("queue=%d", id))
+	}
+	for _, id := range m.Seasons {
+		params = append(params, fmt.Sprintf("season=%d", id))
+	}
+	if m.EndTime != nil {
+		params = append(params, fmt.Sprintf("endTime=%d", m.EndTime.Unix()*1000))
+	}
+	if m.BeginTime != nil {
+		params = append(params, fmt.Sprintf("beginTime=%d", m.BeginTime.Unix()*1000))
+	}
+	if m.EndIndex != nil {
+		params = append(params, fmt.Sprintf("endIndex=%d", m.EndIndex))
+	}
+	if m.BeginIndex != nil {
+		params = append(params, fmt.Sprintf("beginIndex=%d", m.BeginIndex))
+	}
+
+	return strings.Join(params, "&")
 }
 
 // MatchReference contains information about a game by a single summoner
