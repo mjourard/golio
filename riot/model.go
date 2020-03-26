@@ -542,10 +542,10 @@ func (m *MatchFilter) GetQueryParams() string {
 		params = append(params, fmt.Sprintf("beginTime=%d", m.BeginTime.Unix()*1000))
 	}
 	if m.EndIndex != nil {
-		params = append(params, fmt.Sprintf("endIndex=%d", m.EndIndex))
+		params = append(params, fmt.Sprintf("endIndex=%d", *m.EndIndex))
 	}
 	if m.BeginIndex != nil {
-		params = append(params, fmt.Sprintf("beginIndex=%d", m.BeginIndex))
+		params = append(params, fmt.Sprintf("beginIndex=%d", *m.BeginIndex))
 	}
 
 	return strings.Join(params, "&")
