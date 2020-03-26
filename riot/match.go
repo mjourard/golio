@@ -23,7 +23,7 @@ func (m *matchClient) Get(id int) (*Match, error) {
 }
 
 // List returns a specified range of matches played on the account
-func (m *matchClient) List(accountID string, filter MatchFilter) (*Matchlist, error) {
+func (m *matchClient) List(accountID string, filter *MatchFilter) (*Matchlist, error) {
 	logger := m.logger().WithField("method", "List")
 	var matches *Matchlist
 	queryParams := filter.GetQueryParams()
@@ -48,7 +48,7 @@ type MatchStreamValue struct {
 
 // ListStream returns all matches played on this account as a stream, requesting new until there are no
 // more new games
-func (m *matchClient) ListStream(accountID string, filter MatchFilter) <-chan MatchStreamValue {
+func (m *matchClient) ListStream(accountID string, filter *MatchFilter) <-chan MatchStreamValue {
 	logger := m.logger().WithField("method", "ListStream")
 	cMatches := make(chan MatchStreamValue, 100)
 	go func() {
