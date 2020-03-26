@@ -506,8 +506,8 @@ type MatchFilter struct {
 	Seasons     []int
 	EndTime     *time.Time // The end time to use for filtering matchlist specified as epoch milliseconds
 	BeginTime   *time.Time // The begin time to use for filtering matchlist specified as epoch milliseconds
-	EndIndex    *int       // The end index to use for filtering the matchlist. Defaults to BeginIndex + 100. EndIndex - BeginIndex <= 100
-	BeginIndex  *int       // The begin index to use for filtering the matchlist. Defaults to 0. EndIndex - BeginIndex <= 100
+	EndIndex    *int       // The end index to use for filtering the matchlist. Defaults to BeginIndex + 100
+	BeginIndex  *int       // The begin index to use for filtering the matchlist. Defaults to 0
 }
 
 // NewMatchFilter initializes a new MatchFilter value with initialized properties
